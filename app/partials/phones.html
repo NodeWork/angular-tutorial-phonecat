@@ -1,15 +1,20 @@
 <h2>AngularJS tutorial - PhoneCat</h2>
 
 <p>Total number of phones: {{phones.length}}</p>
-<p>Total number of phones: {{phones.length}}</p>
 
-<label>Search:</label>
-<input ng-model="query">
+<label>Search:</label><input ng-model="query">
+<label>Sort by:</label>
+<select ng-model="orderProp">
+  <option value="name">Alphabetical</option>
+  <option value="age">Newest</option>
+  <option value="-age">Oldest</option>
+</select>
 
 <ul class="phones">
-  <li ng-repeat="phone in phones | filter:query">
+  <li ng-repeat="phone in phones | filter:query | orderBy: orderProp">
     {{phone.name}}<p>{{phone.snippet}}</p>
   </li>
 </ul>
 
-<div id="status">Current filter: {{query}}</div>
+<p>Current filter: {{query}}</div>
+<p>Current ordering: {{orderProp}}</div>
