@@ -37,7 +37,25 @@ describe('my app', function() {
          //alternative version of the last assertion that tests just the value of the binding
          using('#status').expect(binding('query')).toBe('nexus');
       });
+
+      it('should render phone specific links', function() {
+         input('query').enter('nexus');
+         element('.phones li a').click();
+         expect(browser().location().url()).toBe('/phones/nexus-s');
+      });
       
+   });
+
+   describe('Phone detail view', function() {
+      
+      beforeEach(function() {
+         browser().navigateTo('../../app/index.html#/phones/nexus-s');
+      });
+      
+      
+      it('should display placeholder page with phoneId', function() {
+         expect(binding('phone.name')).toBe('nexus-s');
+      });
    });
 
   describe('view1', function() {

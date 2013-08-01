@@ -12,9 +12,14 @@
 
 <ul class="phones">
   <li ng-repeat="phone in phones | filter:query | orderBy: orderProp">
-    {{phone.name}}<p>{{phone.snippet}}</p>
+    <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+    <p>{{phone.snippet}}</p>
   </li>
 </ul>
 
-<p>Current filter: {{query}}</div>
+<p id="status">Current filter: {{query}}</div>
 <p>Current ordering: {{orderProp}}</div>
+<div>
+  <span>phones data in json</span>
+  <pre>{{ phones | json }}</pre>
+</div>
