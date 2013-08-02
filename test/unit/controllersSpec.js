@@ -2,7 +2,16 @@
 
 /* jasmine specs for controllers go here */
 
-describe('controllers', function(){
+describe('controllers', function() {
+
+   beforeEach(function(){
+      this.addMatchers({
+         toEqualData: function(expected) {
+            return angular.equals(this.actual, expected);
+         }
+      });
+   });
+
    beforeEach(module('myApp.controllers'));
    beforeEach(module('myApp.services'));
 
@@ -19,7 +28,7 @@ describe('controllers', function(){
       }));
 
       it('should phones list has 2 items', function() {
-         expect(scope.phones).toBeUndefined();
+         expect(scope.phones).toEqual([]);
          $httpBackend.flush();
          expect(scope.phones.length).toBe(2);
       });
@@ -31,11 +40,13 @@ describe('controllers', function(){
    });
 
    describe('PhoneDetailCtrl', function(){
-      var scope, $httpBackend, ctrl;
+      var scope, $httpBackend, ctrl, data;
       
       beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
+         data = {name:'phone xyz', images: ['image1.png', 'image2.png']};
+
          $httpBackend = _$httpBackend_;
-         $httpBackend.expectGET('data/xyz.json').respond({name:'phone xyz'});
+         $httpBackend.expectGET('data/xyz.json').respond(data);
          
          $routeParams.phoneId = 'xyz';
          scope = $rootScope.$new();
@@ -44,10 +55,10 @@ describe('controllers', function(){
       
       
       it('should fetch phone detail', function() {
-         expect(scope.phone).toBeUndefined();
+         expect(scope.phone).toEqualData({});
          $httpBackend.flush();
          
-         expect(scope.phone).toEqual({name:'phone xyz'});
+         expect(scope.phone).toEqualData(data);
       });
    });
 
