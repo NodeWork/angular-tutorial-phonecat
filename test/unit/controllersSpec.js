@@ -4,6 +4,7 @@
 
 describe('controllers', function(){
    beforeEach(module('myApp.controllers'));
+   beforeEach(module('myApp.services'));
 
    describe('PhoneCtrl', function () {
       var scope, ctrl, $httpBackend;
