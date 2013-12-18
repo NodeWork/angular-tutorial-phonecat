@@ -15,13 +15,13 @@ describe('my app', function() {
       });
       
       it('should filter the phone list as user types into the search box', function() {
-         expect(repeater('.phones li').count()).toBe(3);
+         expect(repeater('.phones li').count()).toBe(20);
          
          input('query').enter('nexus');
          expect(repeater('.phones li').count()).toBe(1);
          
          input('query').enter('motorola');
-         expect(repeater('.phones li').count()).toBe(2);
+         expect(repeater('.phones li').count()).toBe(8);
       });
       
       
@@ -54,7 +54,7 @@ describe('my app', function() {
       
       
       it('should display placeholder page with phoneId', function() {
-         expect(binding('phone.name')).toBe('nexus-s');
+         expect(binding('phone.name')).toBe('Nexus S');
       });
    });
 

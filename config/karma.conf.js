@@ -1,20 +1,33 @@
-basePath = '../';
+module.exports = function(config) {
+   config.set({
+      // your config
+      frameworks: ["jasmine"],
 
-files = [
-  JASMINE,
-  JASMINE_ADAPTER,
-  'app/lib/angular/angular.js',
-  'app/lib/angular/angular-*.js',
-  'test/lib/angular/angular-mocks.js',
-  'app/js/**/*.js',
-  'test/unit/**/*.js'
-];
+      basePath : '../',
 
-autoWatch = true;
+      files : [
+         'app/lib/angular/angular.js',
+         'app/lib/angular/angular-*.js',
+         'test/lib/angular/angular-mocks.js',
+         'app/js/**/*.js',
+         'test/unit/*.js'
+      ],
 
-browsers = ['Chrome'];
+      autoWatch : true,
 
-junitReporter = {
-  outputFile: 'test_out/unit.xml',
-  suite: 'unit'
+      browsers : ['Chrome'],
+
+      junitReporter : {
+         outputFile: 'test_out/unit.xml',
+         suite: 'unit'
+      },
+
+      plugins: [
+         'karma-jasmine',
+         'karma-chrome-launcher',
+         //'karma-firefox-launcher',
+         'karma-junit-reporter'
+      ]
+
+   });
 };

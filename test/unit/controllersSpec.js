@@ -41,23 +41,23 @@ describe('controllers', function() {
 
    describe('PhoneDetailCtrl', function(){
       var scope, $httpBackend, ctrl, data;
-      
+
       beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
          data = {name:'phone xyz', images: ['image1.png', 'image2.png']};
 
          $httpBackend = _$httpBackend_;
          $httpBackend.expectGET('data/xyz.json').respond(data);
-         
+
          $routeParams.phoneId = 'xyz';
          scope = $rootScope.$new();
          ctrl = $controller('PhoneDetailCtrl', {$scope: scope});
       }));
-      
-      
+
+
       it('should fetch phone detail', function() {
          expect(scope.phone).toEqualData({});
          $httpBackend.flush();
-         
+
          expect(scope.phone).toEqualData(data);
       });
    });
